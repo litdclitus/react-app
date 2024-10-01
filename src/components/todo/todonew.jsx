@@ -2,24 +2,15 @@ import { useState } from 'react';
 
 const TodoNew = (props) => {
     const { addTodo } = props;
-    const [valueInput, setValueInput] = useState("Lit")
+    const [valueInput, setValueInput] = useState("")
 
     const handleOnClick = () => {
         addTodo(valueInput);
+        setValueInput("");
     }
     const handleOnChange = (value) => {
         setValueInput(value);
     }
-
-    // const searchKeyPress = (e) => {
-    //     // look for window.event in case event isn't passed in
-    //     e = e || window.event;
-    //     if (e.keyCode == 13) {
-    //         document.getElementById('input-btn').click();
-    //         return false;
-    //     }
-    //     return true;
-    // }
 
     return (
         <div className="todo-input">
@@ -32,7 +23,7 @@ const TodoNew = (props) => {
                 return true;
             }
             } //Trigger submit input with Enter-key
-                onChange={(event) => handleOnChange(event.target.value)} />
+                onChange={(event) => handleOnChange(event.target.value)} value={valueInput} />
             <button id="input-btn" onClick={handleOnClick}
             >Add</button>
             <div>Type input: {valueInput}</div>

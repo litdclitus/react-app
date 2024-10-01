@@ -57,7 +57,7 @@
 }
 
 .todo-data {
-    /* min-height: 150px; */
+    min-height: 50px;
     padding: 10px;
     border-radius: 3px;
     display: flex;
@@ -101,4 +101,24 @@
     .logo {
         animation: logo-spin infinite 20s linear;
     }
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn {
+    border: none;
+    background: #ff6142;
+    color: white;
+    font-weight: 600;
+    padding: 4px;
+    border-radius: 3px;
+}
+
+.close-btn:hover {
+    opacity: 0.85;
+    cursor: pointer;
 }
