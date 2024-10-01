@@ -26,7 +26,6 @@ const TodoNew = (props) => {
                 onChange={(event) => handleOnChange(event.target.value)} value={valueInput} />
             <button id="input-btn" onClick={handleOnClick}
             >Add</button>
-            <div>Type input: {valueInput}</div>
         </div>
     );
 }
