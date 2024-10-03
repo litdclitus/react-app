@@ -29,6 +29,17 @@ ul {
     text-decoration: none;
 }
 
+li a.active {
+    display: block;
+    width: 100%;
+    border-bottom: 3px solid #f68851;
+}
+
+li a.active:hover {
+    border-bottom: 3px double #f68851;
+    width: 100%;
+}
+
 .nav-links li a:before {
     content: '';
     position: absolute;
