@@ -1,8 +1,7 @@
 import { ConsoleSqlOutlined } from '@ant-design/icons';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message, notification } from 'antd';
 import { useState } from 'react';
-import axios from 'axios';
-
+import { createUserAPI } from '../../services/api.services';
 
 const UserForm = () => {
 
@@ -11,13 +10,15 @@ const UserForm = () => {
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleOnClick = () => {
-        const data = {
-            fullName, email, phone, password
+    const handleOnClick = async () => {
+        const res = await createUserAPI(fullName, email, phone, password);
+        console.log(">>>check res: ", res.data)
+        if (res.data) {
+            notification.success({
+                message: "Success",
+                description: "User successfully created"
+            })
         }
-        const URL_BACKEND = "http://localhost:8080/api/v1/user";
-        axios.post(URL_BACKEND, data);
-        // console.log(">>>check info: ", { fullName, email, phone, password })
     }
 
 
