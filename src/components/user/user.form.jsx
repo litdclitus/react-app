@@ -1,11 +1,31 @@
+import { ConsoleSqlOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
+import { useState } from 'react';
+import axios from 'axios';
+
 
 const UserForm = () => {
+
+    const [fullName, setFullName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleOnClick = () => {
+        const data = {
+            fullName, email, phone, password
+        }
+        const URL_BACKEND = "http://localhost:8080/api/v1/user";
+        axios.post(URL_BACKEND, data);
+        // console.log(">>>check info: ", { fullName, email, phone, password })
+    }
+
+
     return (
         <Form
             name="wrap"
             labelCol={{
-                flex: '110px',
+                flex: '130px',
             }}
             labelAlign="left"
             labelWrap
@@ -14,8 +34,8 @@ const UserForm = () => {
             }}
             colon={false}
             style={{
-                maxWidth: 600,
-                margin: 20
+                maxWidth: 700,
+                margin: 30
             }}>
             <Form.Item
                 label="Full Name"
@@ -25,7 +45,10 @@ const UserForm = () => {
                         required: true,
                     },
                 ]}>
-                <Input />
+                <Input
+                    value={fullName}
+                    onChange={(event) => setFullName(event.target.value)}
+                />
             </Form.Item>
             <Form.Item
                 label="Email"
@@ -35,17 +58,21 @@ const UserForm = () => {
                         required: true,
                     },
                 ]}>
-                <Input />
+                <Input
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)} />
             </Form.Item>
             <Form.Item
                 label="Phone number"
-                name="number"
+                name="phone"
                 rules={[
                     {
                         required: false,
                     },
                 ]}>
-                <Input />
+                <Input
+                    value={phone}
+                    onChange={(event) => setPhone(event.target.value)} />
             </Form.Item>
             <Form.Item
                 label="Password"
@@ -55,13 +82,16 @@ const UserForm = () => {
                         required: true,
                     },
                 ]}>
-                <Input.Password />
+                <Input.Password
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)} />
 
             </Form.Item>
 
             <Form.Item label=" ">
-                <Button type="primary" htmlType="submit">
-                    Submit
+                <Button type="primary" htmlType="submit"
+                    onClick={handleOnClick}>
+                    Create
                 </Button>
             </Form.Item>
         </Form>
