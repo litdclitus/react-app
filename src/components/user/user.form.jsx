@@ -65,10 +65,10 @@ const UserForm = () => {
             </Form.Item>
             <Form.Item
                 label="Phone number"
-                name="phone"
+                name="Phone number"
                 rules={[
                     {
-                        required: false,
+                        required: true,
                     },
                 ]}>
                 <Input
