@@ -1,6 +1,6 @@
 .footer {
     background: #1c1b1b;
-    max-height: 120px;
+    max-height: 100px;
     font-family: 'Play', sans-serif;
     text-align: center;
     overflow: hidden;
@@ -9,6 +9,7 @@
     left: 0;
     right: 0;
     clear: both;
+
 }
 
 .footer .row {
