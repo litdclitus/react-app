@@ -9,7 +9,7 @@
     left: 0;
     right: 0;
     clear: both;
-
+    display: none;
 }
 
 .footer .row {

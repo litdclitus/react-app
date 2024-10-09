@@ -4,9 +4,7 @@ import { useEffect, useState } from 'react';
 
 const UserTable = () => {
 
-    const [dataUser, setDataUser] = useState([
-        { _id: "1", fullName: "lit", address: "hcm", phone: "123456" }
-    ]);
+    const [dataUser, setDataUser] = useState([]);
 
     useEffect(() => {
         loadUser();
