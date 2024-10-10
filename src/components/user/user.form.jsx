@@ -1,9 +1,10 @@
-import { ConsoleSqlOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Modal, notification } from 'antd';
 import { useState } from 'react';
 import { createUserAPI } from '../../services/api.services';
 
-const UserForm = () => {
+const UserForm = (props) => {
+
+    const { loadUser } = props;
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -20,7 +21,8 @@ const UserForm = () => {
                 message: "Success",
                 description: "User successfully created"
             })
-            setIsModalOpen(false);
+            clearDataCloseModal();
+            await loadUser();
         }
         else {
             notification.error({
@@ -30,6 +32,13 @@ const UserForm = () => {
         }
     }
 
+    const clearDataCloseModal = () => {
+        setIsModalOpen(false);
+        setFullName("");
+        setEmail("");
+        setPhone("");
+        setPassword("");
+    }
 
     return (
         <div className='user-form'>
@@ -42,8 +51,10 @@ const UserForm = () => {
 
             <Modal title="Create user"
                 open={isModalOpen}
-                onCancel={() => setIsModalOpen(false)}
+                onCancel={() => clearDataCloseModal()}
                 onOk={() => handleOnSubmit()}
+                okText="Create"
+                maskClosable={false}
             >
                 <Form
                     name="wrap"
@@ -62,7 +73,7 @@ const UserForm = () => {
                     }}>
                     <Form.Item
                         label="Full Name"
-                        name="name"
+                        // name="name"
                         rules={[
                             {
                                 required: true,
@@ -75,7 +86,7 @@ const UserForm = () => {
                     </Form.Item>
                     <Form.Item
                         label="Email"
-                        name="email"
+                        // name="email"
                         rules={[
                             {
                                 required: true,
@@ -87,7 +98,7 @@ const UserForm = () => {
                     </Form.Item>
                     <Form.Item
                         label="Phone number"
-                        name="Phone number"
+                        // name="Phone number"
                         rules={[
                             {
                                 required: true,
@@ -99,7 +110,7 @@ const UserForm = () => {
                     </Form.Item>
                     <Form.Item
                         label="Password"
-                        name="password"
+                        // name="password"
                         rules={[
                             {
                                 required: true,
@@ -108,12 +119,11 @@ const UserForm = () => {
                         <Input.Password
                             value={password}
                             onChange={(event) => setPassword(event.target.value)} />
-
                     </Form.Item>
                 </Form>
             </Modal>
         </div >
-
     )
 }
+
 export default UserForm;
