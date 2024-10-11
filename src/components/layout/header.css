@@ -15,6 +15,17 @@ ul {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
+.nav-link-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-link-item i {
+    margin-right: 6px;
+    margin-top: 2px;
+}
+
 .nav-links li {
     list-style: none;
     margin: 0 12px;
@@ -32,13 +43,15 @@ ul {
 li a.active {
     display: block;
     width: 100%;
-    border-bottom: 3px solid #f68851;
+    /* border-top: 3px solid #4e87f3;
+     */
+    color: #f98145;
 }
 
-li a.active:hover {
-    border-bottom: 3px double #f68851;
+/* li a.active:hover {
+    border-top: 3px solid #4e87f3;
     width: 100%;
-}
+} */
 
 .nav-links li a:before {
     content: '';
@@ -47,7 +60,7 @@ li a.active:hover {
     left: 0;
     height: 3px;
     width: 0%;
-    background: #f68851;
+    background: #f98145;
     border-radius: 12px;
     transition: all 0.4s ease;
 }

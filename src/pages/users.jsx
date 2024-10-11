@@ -19,9 +19,10 @@ const UsersPage = () => {
     return (
         <div>
             <UserForm loadUser={loadUser} />
-            <UserTable dataUser={dataUser} />
+            <UserTable
+                loadUser={loadUser}
+                dataUser={dataUser} />
         </div>
-
     )
 }
 
