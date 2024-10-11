@@ -18,12 +18,7 @@ ul {
 .nav-link-item {
     display: flex;
     align-items: center;
-    justify-content: center;
-}
-
-.nav-link-item i {
-    margin-right: 6px;
-    margin-top: 2px;
+    justify-content: space-between;
 }
 
 .nav-links li {
@@ -41,17 +36,10 @@ ul {
 }
 
 li a.active {
-    display: block;
+    /* display: block; */
     width: 100%;
-    /* border-top: 3px solid #4e87f3;
-     */
     color: #f98145;
 }
-
-/* li a.active:hover {
-    border-top: 3px solid #4e87f3;
-    width: 100%;
-} */
 
 .nav-links li a:before {
     content: '';
@@ -84,4 +72,9 @@ li a.active {
 .nav-links li.forward a:hover:before {
     transform: scaleX(1);
     transform-origin: left;
+}
+
+.item-icon {
+    display: flex;
+    justify-content: space-between;
 }
