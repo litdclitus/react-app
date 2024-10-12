@@ -9,8 +9,7 @@ const Footer = () => {
 
     return (
         <div>
-            <div class="clear"></div>
-
+            <div className="clear"></div>
             <div className="footer">
                 <div className="row">
                     <a href="https://www.facebook.com/" target='_blank'><i><FaFacebookF /></i></a>

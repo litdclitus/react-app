@@ -21,7 +21,6 @@ const UpdateUserModal = (props) => {
 
     const handleOnSubmit = async () => {
         const res = await updateUserAPI(id, fullName, phone);
-        console.log(">>>check res: ", res.data)
         if (res.data) {
             notification.success({
                 message: "Success",
@@ -94,7 +93,6 @@ const UpdateUserModal = (props) => {
                         value={fullName}
                         onChange={(event) => {
                             setFullName(event.target.value);
-                            // console.log('>>check setFullName: ', setFullNameChange);
 
                         }}
                     />
