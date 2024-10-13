@@ -38,7 +38,7 @@ ul {
 li a.active {
     /* display: block; */
     width: 100%;
-    color: #f98145;
+    color: rgb(177, 98, 38);
 }
 
 .nav-links li a:before {
@@ -48,7 +48,7 @@ li a.active {
     left: 0;
     height: 3px;
     width: 0%;
-    background: #f98145;
+    background: rgb(177, 98, 38);
     border-radius: 12px;
     transition: all 0.4s ease;
 }

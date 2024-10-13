@@ -1,17 +1,8 @@
 import { Drawer } from 'antd';
-import { useState } from 'react';
 
 const ViewUserDetail = (props) => {
 
     const { dataDetail, setDataDetail, dataModalOpen, setDataModalOpen } = props;
-
-    const [open, setOpen] = useState(false);
-    const showDrawer = () => {
-        setOpen(true);
-    };
-    const onClose = () => {
-        setOpen(false);
-    };
 
     return (
         <>

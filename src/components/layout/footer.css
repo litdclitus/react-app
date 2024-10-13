@@ -4,7 +4,7 @@
 }
 
 .footer {
-    background: rgba(197, 130, 79, 0.283);
+    background: rgba(102, 71, 47, 0.283);
     height: 50px;
     font-family: 'Play', sans-serif;
     text-align: center;
@@ -13,7 +13,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    display: none;
+    margin-top: auto;
 }
 
 .footer .row {
