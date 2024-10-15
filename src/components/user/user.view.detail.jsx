@@ -28,7 +28,8 @@ const ViewUserDetail = (props) => {
         const resUpload = await handleUploadFile(selectedFile, "avatar");
         if (resUpload.data) {
             const newAvatar = resUpload.data.fileUploaded;
-            const resUpdate = await updateAvatarUserAPI(newAvatar, dataDetail._id, dataDetail.fullName, dataDetail.phone);
+            const resUpdate = await updateAvatarUserAPI(newAvatar, dataDetail._id,
+                dataDetail.fullName, dataDetail.phone);
             if (resUpdate.data) {
                 setDataModalOpen(false);
                 setSelectedFile(null);
@@ -58,7 +59,7 @@ const ViewUserDetail = (props) => {
     return (
         <>
             <Drawer
-                width={"40vw"}
+                width={"38vw"}
                 title="User information"
                 onClose={() => {
                     setDataDetail(null)

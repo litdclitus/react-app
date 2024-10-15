@@ -1,5 +1,5 @@
 import { Table, notification } from 'antd';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { ConsoleSqlOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import UpdateUserModal from './user.update.modal';
 import { useState } from "react";
 import ViewUserDetail from './user.view.detail';
@@ -8,9 +8,10 @@ import { Popconfirm } from 'antd';
 
 const UserTable = (props) => {
 
-    const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
+    const { dataUser, loadUser, current, pageSize, total, setCurrent, setPageSize } = props;
 
-    const { dataUser, loadUser } = props;
+
+    const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
 
     const [dataUpdate, setDataUpdate] = useState(null);
 
@@ -34,6 +35,14 @@ const UserTable = (props) => {
     }
 
     const columns = [
+        {
+            title: "Order",
+            render: (item, record, index) => {
+                return (
+                    <>{(index + 1) + (current - 1) * pageSize} </>
+                )
+            }
+        },
         {
             title: 'Id',
             dataIndex: '_id',
@@ -85,12 +94,36 @@ const UserTable = (props) => {
         },
     ];
 
+    const onChange = (pagination, filters, sorter, extra) => {
+        //nếu thay đổi trang: current
+        if (pagination.current && current) {
+            if (+pagination.current !== +current) {
+                setCurrent(+pagination.current) //"string" to integer number
+            }
+        }
+        //nếu thay đổi tổng số phần tử: pageSize
+        if (pagination.pageSize && pageSize) {
+            if (+pagination.pageSize !== +pageSize) {
+                setPageSize(+pagination.pageSize) //"string" to integer number
+            }
+        }
+    };
+
     return (
         <>
             <Table
                 columns={columns}
                 dataSource={dataUser}
                 rowKey={"_id"}
+                pagination={
+                    {
+                        current: current,
+                        pageSize: pageSize,
+                        showSizeChanger: true,
+                        total: total,
+                        showTotal: (total, range) => { return (<div> {range[0]}-{range[1]} on {total} rows</div>) }
+                    }}
+                onChange={onChange}
             />
             <UpdateUserModal
                 isModalUpdateOpen={isModalUpdateOpen}
