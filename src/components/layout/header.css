@@ -6,13 +6,20 @@ ul {
     box-sizing: border-box;
 }
 
-.nav-links {
+.header-nav {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
     background: #fff;
     padding: 20px 15px;
     border-radius: 12px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    align-items: center;
+
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
 }
 
 .nav-link-item {

@@ -14,15 +14,18 @@ const TodoNew = (props) => {
 
     return (
         <div className="todo-input">
-            <input type="text" id="input-box" placeholder='Enter your task' onKeyPress={(event) => {
-                event = event || window.event;
-                if (event.key == 'Enter') {
-                    document.getElementById('input-btn').click();
-                    return false;
+            <input
+                type="text" id="input-box"
+                placeholder='Enter your task'
+                onKeyPress={(event) => { //Trigger submit input with Enter-key
+                    event = event || window.event;
+                    if (event.key == 'Enter') {
+                        document.getElementById('input-btn').click();
+                        return false;
+                    }
+                    return true;
                 }
-                return true;
-            }
-            } //Trigger submit input with Enter-key
+                }
                 onChange={(event) => handleOnChange(event.target.value)} value={valueInput} />
             <button id="input-btn" onClick={handleOnClick}
             >Add</button>
