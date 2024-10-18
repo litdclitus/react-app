@@ -1,7 +1,10 @@
-import { Form, Input, Button, notification, Row, Col } from "antd";
+import { Form, Input, Button, notification, Row, Col, Divider } from "antd";
+import { Link } from "react-router-dom";
 import { registerUserAPI } from "../services/api.services";
 import { useNavigate } from "react-router-dom";
 import "./register.css";
+import { ArrowRightOutlined } from '@ant-design/icons';
+
 
 const RegisterPage = () => {
 
@@ -105,15 +108,17 @@ const RegisterPage = () => {
                 </Row>
 
                 <Row justify={"center"}>
-                    <Col xs={24} md={12}>
-                        <Button style={{ marginBottom: 10, marginLeft: 10 }} type="primary" htmlType="submit"
-                            onClick={() => {
-                                form.submit;
-                            }}>
+                    <Col style={{ display: "flex", justifyContent: "space-between" }} xs={24} md={12}>
+                        <Button style={{ marginBottom: 10 }} type="primary" htmlType="submit"
+                            onClick={() => { form.submit }}>
                             Submit
                         </Button>
+                        <Link to="/">Go to Dashboard <ArrowRightOutlined /></Link>
                     </Col>
+                    <Divider dashed>Already have an account? <Link to="/login">Log in now</Link></Divider>
                 </Row>
+
+
             </Form>
         </div >
     )
