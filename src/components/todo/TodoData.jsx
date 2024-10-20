@@ -1,19 +1,29 @@
-
 const TodoData = (props) => {
-    const { todoList, deleteTodo } = props;
+    const { todoList, deleteTodo, toggleTodo } = props;
 
-    const handleOnClick = (id) => {
-        console.log(id);
+    const handleOnClickDelete = (id) => {
         deleteTodo(id);
+    }
+
+    const handleToggleTodo = (id) => {
+        toggleTodo(id);
     }
 
     return (
         <div className="todo-data">
             {todoList.map((item, index) => {
                 return (
-                    <div className={`todo-item`} key={item.id}>
-                        <div>{item.content}</div>
-                        <button className="close-btn" onClick={() => handleOnClick(item.id)}>Delete</button>
+                    <div className={`todo-item`}
+                        style={{ textDecoration: item.completed ? 'line-through' : 'none' }}
+                        key={item.id}>
+                        <div className="todo-text">{item.content}</div>
+                        <div className="todo-btn">
+                            <button className="toggle-btn" style={{ marginRight: 15 }}
+                                onClick={() => { handleToggleTodo(item.id) }}>Toggle</button>
+                            <button className="close-btn"
+                                onClick={() => handleOnClickDelete(item.id)}>Delete
+                            </button>
+                        </div>
                     </div>
                 )
             })}

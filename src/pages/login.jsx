@@ -1,16 +1,39 @@
 import React from 'react';
 import { LockOutlined, MailOutlined, ArrowRightOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input, Flex, Row, Col, Divider } from 'antd';
+import { Button, Checkbox, Form, Input, Flex, Row, Col, Divider, message, notification } from 'antd';
 import { Link } from "react-router-dom";
 import "./login.css"
+import { loginAPI } from '../services/api.services';
+import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
 
 
 const LoginPage = () => {
 
     const [form] = Form.useForm();
-    // const navigate = useNavigate();
-    const onFinish = (values) => {
+
+    const navigate = useNavigate();
+
+    const [loading, setLoading] = useState(false)
+
+    const onFinish = async (values) => {
         console.log('Received values of form: ', values);
+        setLoading(true);
+        const res = await loginAPI(values.email, values.password);
+        if (res.data) {
+            notification.success({
+                message: "Success",
+                description: "Login successfully"
+            })
+            navigate("/");
+        }
+        else {
+            notification.error({
+                message: "Error",
+                description: JSON.stringify(res.message),
+            })
+        }
+        setLoading(false);
     };
 
     return (
@@ -72,7 +95,10 @@ const LoginPage = () => {
                 <Row justify={"center"}>
                     <Col style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
                         xs={24} md={14} lg={12}>
-                        <Button style={{ marginBottom: 10 }} type="primary" htmlType="submit"
+                        <Button
+                            loading={loading}
+                            style={{ marginBottom: 10 }}
+                            type="primary" htmlType="submit"
                             onClick={() => { form.submit }}>
                             Sign in
                         </Button>

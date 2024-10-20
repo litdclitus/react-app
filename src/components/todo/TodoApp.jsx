@@ -5,13 +5,14 @@ import ReactLogo from '../../assets/react.svg';
 import { useState } from 'react';
 
 const TodoApp = () => {
-    const [todoList, setTodoList] = useState([
-    ])
+    const [todoList, setTodoList] = useState([]);
 
     const addTodo = (content) => {
+        // if (content.trim()) {
         const newTodo = {
             id: randomIntFromInterval(1, 999999),
-            content: content
+            content: content,
+            completed: false,
         }
         setTodoList([...todoList, newTodo]);
     }
@@ -24,6 +25,14 @@ const TodoApp = () => {
         setTodoList(afterDeleteTodo);
     }
 
+    const toggleTodo = (id) => {
+        setTodoList(
+            todoList.map((item) =>
+                item.id === id ? { ...item, completed: !item.completed } : item
+            )
+        );
+    };
+
     return (
         <div className="todo-container">
             <div className="todo-title">Todo List</div>
@@ -35,6 +44,7 @@ const TodoApp = () => {
                 <TodoData
                     todoList={todoList}
                     deleteTodo={deleteTodo}
+                    toggleTodo={toggleTodo}
                 />
                 :
                 <div className="todo-img">

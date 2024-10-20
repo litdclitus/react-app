@@ -2,12 +2,14 @@ import { useState } from 'react';
 
 const TodoNew = (props) => {
     const { addTodo } = props;
+
     const [valueInput, setValueInput] = useState("")
 
     const handleOnClick = () => {
         addTodo(valueInput);
         setValueInput("");
     }
+
     const handleOnChange = (value) => {
         setValueInput(value);
     }
@@ -24,12 +26,12 @@ const TodoNew = (props) => {
                         return false;
                     }
                     return true;
-                }
-                }
+                }}
                 onChange={(event) => handleOnChange(event.target.value)} value={valueInput} />
-            <button id="input-btn" onClick={handleOnClick}
-            >Add</button>
+            <button id="input-btn" onClick={handleOnClick}>Add
+            </button>
         </div>
     );
 }
+
 export default TodoNew;

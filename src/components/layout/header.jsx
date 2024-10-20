@@ -79,8 +79,7 @@ const Header = () => {
         {
             label: 'Account',
             key: 'account',
-            icon: <MdOutlineManageAccounts />
-            ,
+            icon: <MdOutlineManageAccounts />,
             children: [
                 {
                     label: <Link to={"/login"}>Log in</Link>,
@@ -96,7 +95,7 @@ const Header = () => {
     ];
 
     return (
-        <Menu
+        <Menu style={{ display: "flex", }}
             onClick={onClick}
             selectedKeys={[current]}
             mode="horizontal"
