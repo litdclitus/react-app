@@ -15,7 +15,7 @@ const UserForm = (props) => {
 
     const handleOnSubmit = async () => {
         const res = await createUserAPI(fullName, email, phone, password);
-        console.log(">>>check res: ", res.data)
+        // console.log(">>>check res: ", res.data)
         if (res.data) {
             notification.success({
                 message: "Success",

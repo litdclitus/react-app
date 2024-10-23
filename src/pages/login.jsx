@@ -1,11 +1,11 @@
-import React from 'react';
+import { React, useContext, useState } from 'react';
 import { LockOutlined, MailOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, Flex, Row, Col, Divider, message, notification } from 'antd';
 import { Link } from "react-router-dom";
 import "./login.css"
 import { loginAPI } from '../services/api.services';
 import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
+import { AuthContext } from '../components/context/auth.context';
 
 
 const LoginPage = () => {
@@ -14,17 +14,18 @@ const LoginPage = () => {
 
     const navigate = useNavigate();
 
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+
+    const { setUserLogin } = useContext(AuthContext);
+
 
     const onFinish = async (values) => {
-        console.log('Received values of form: ', values);
         setLoading(true);
         const res = await loginAPI(values.email, values.password);
         if (res.data) {
-            notification.success({
-                message: "Success",
-                description: "Login successfully"
-            })
+            message.success("Login successfully!");
+            localStorage.setItem("access_token", res.data.access_token);
+            setUserLogin(res.data.user);
             navigate("/");
         }
         else {

@@ -47,24 +47,37 @@
 import { Link, NavLink } from 'react-router-dom';
 import { Menu } from 'antd';
 import { UsergroupAddOutlined, HomeOutlined, AuditOutlined, SettingOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { GiBlackBook } from "react-icons/gi";
+import { AuthContext } from '../context/auth.context';
+import { IoIosLogIn } from "react-icons/io";
+import { MdAppRegistration } from "react-icons/md";
+import { TbHandLoveYou } from "react-icons/tb";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { CiTextAlignRight } from 'react-icons/ci';
+
+
 
 
 const Header = () => {
     const [current, setCurrent] = useState('');
+
+    const { userLogin } = useContext(AuthContext);
+
     const onClick = (e) => {
-        console.log('click ', e);
+        // console.log('click ', e);
         setCurrent(e.key);
     };
 
     const items = [
+
         {
             label: <Link to={"/"}>Dashboard</Link>,
             key: 'home',
-            icon: <HomeOutlined />,
+            icon: <LuLayoutDashboard />,
         },
+
         {
             label: <Link to={"/users"}>Users</Link>,
             key: 'users',
@@ -76,22 +89,31 @@ const Header = () => {
             icon: <GiBlackBook />,
         },
 
-        {
-            label: 'Account',
+        ...(userLogin.id ? [{
+            label: `Welcome ${userLogin.fullName}`,
             key: 'account',
-            icon: <MdOutlineManageAccounts />,
+            icon: <TbHandLoveYou />,
             children: [
                 {
-                    label: <Link to={"/login"}>Log in</Link>,
-                    key: 'login',
-                },
-                {
-                    label: 'Log out',
+                    label: "Log out",
                     key: 'logout',
                 },
             ],
-        },
+            style: { position: "absolute", right: 0 },
+        }] : []),
 
+        ...(!userLogin.id ? [{
+            label: <Link to={"/login"} style={{}}>Sign in</Link>,
+            key: 'login',
+            icon: <IoIosLogIn />,
+            style: { position: "absolute", right: 100 },
+        },
+        {
+            label: <Link to={"/register"} style={{}}>Sign up</Link>,
+            key: 'register',
+            icon: <MdAppRegistration />,
+            style: { position: "absolute", right: 0 },
+        }] : []),
     ];
 
     return (
