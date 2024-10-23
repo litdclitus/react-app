@@ -1,4 +1,4 @@
-import TodoNew from './TodoNew';
+import TodoNew from './todonew';
 import TodoData from './TodoData';
 import './todo.css';
 import ReactLogo from '../../assets/react.svg';
