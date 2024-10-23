@@ -45,7 +45,7 @@
 
 // export default Header;
 import { Link, NavLink } from 'react-router-dom';
-import { Menu } from 'antd';
+import { Menu, message } from 'antd';
 import { UsergroupAddOutlined, HomeOutlined, AuditOutlined, SettingOutlined } from '@ant-design/icons';
 import { useContext, useState } from 'react';
 import { MdOutlineManageAccounts } from "react-icons/md";
@@ -56,6 +56,8 @@ import { MdAppRegistration } from "react-icons/md";
 import { TbHandLoveYou } from "react-icons/tb";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { CiTextAlignRight } from 'react-icons/ci';
+import { logoutAPI } from '../../services/api.services';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -63,12 +65,31 @@ import { CiTextAlignRight } from 'react-icons/ci';
 const Header = () => {
     const [current, setCurrent] = useState('');
 
-    const { userLogin } = useContext(AuthContext);
+    const { userLogin, setUserLogin } = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const onClick = (e) => {
         // console.log('click ', e);
         setCurrent(e.key);
     };
+
+    const handleOnLogout = async () => {
+        const res = await logoutAPI();
+        if (res.data) {
+            localStorage.removeItem("access_token");
+            setUserLogin({
+                email: "",
+                phone: "",
+                fullName: "",
+                role: "",
+                avatar: "",
+                id: ""
+            })
+            message.success("logout thành công");
+            navigate("/");
+        }
+    }
 
     const items = [
 
@@ -95,7 +116,7 @@ const Header = () => {
             icon: <TbHandLoveYou />,
             children: [
                 {
-                    label: "Log out",
+                    label: <span onClick={() => { handleOnLogout() }}>Log out</span>,
                     key: 'logout',
                 },
             ],

@@ -21,16 +21,14 @@ const PrivateRoute = (props) => {
             status="403"
             title="Oops!"
             subTitle={"Authorization required."}
-            extra={<>
-                <Button type="primary">
-                    <Link to="/">Back to Dashboard</Link>
-                </Button>
-                <span>or</span>
-                <Link to="/login">Log in</Link>
-            </>
-            }
-
-
+            extra={
+                <>
+                    <Button type="primary">
+                        <Link to="/">Back to Dashboard</Link>
+                    </Button>
+                    <span>or</span>
+                    <Link to="/login">Log in</Link>
+                </>}
         />
     )
 }
