@@ -1,6 +1,8 @@
 import { Button, Form, Input, Modal, notification } from 'antd';
 import { useState } from 'react';
 import { createUserAPI } from '../../services/api.services';
+import { PiUserPlus } from "react-icons/pi";
+
 
 const UserForm = (props) => {
 
@@ -45,8 +47,9 @@ const UserForm = (props) => {
             <div style={{ display: "flex", justifyContent: "space-between", marginRight: 20, marginLeft: 20, marginTop: 30, marginBottom: 50 }}>
                 <h3>Table Users</h3>
                 <Button
+                    style={{ margin: 0, padding: 10 }}
                     onClick={() => setIsModalOpen(true)}
-                    type="primary"> Create User </Button>
+                    type="primary"><PiUserPlus />  Create User </Button>
             </div>
 
             <Modal title="Create user"

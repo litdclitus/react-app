@@ -113,11 +113,10 @@ const ViewUserDetail = (props) => {
                 {preview &&
                     <>
                         <div style={{
-                            display: "block",
+                            display: "flex",
                             height: "150px", width: "100%",
-                            border: "1px solid #ccc", border: "1px dashed #ccc",
-                            marginTop: 20, marginBottom: 10, display: "flex", justifyContent: "center"
-                            // marginLeft: "auto", marginRight: "auto"
+                            border: "1px dashed #ccc",
+                            marginTop: 20, marginBottom: 10, justifyContent: "center",
                         }}>
                             <img
                                 style={{

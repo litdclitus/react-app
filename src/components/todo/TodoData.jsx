@@ -1,3 +1,7 @@
+import { MdDoneOutline } from "react-icons/md";
+
+import { RiDeleteBinLine } from "react-icons/ri";
+
 const TodoData = (props) => {
     const { todoList, deleteTodo, toggleTodo } = props;
 
@@ -19,9 +23,12 @@ const TodoData = (props) => {
                         <div className="todo-text">{item.content}</div>
                         <div className="todo-btn">
                             <button className="toggle-btn" style={{ marginRight: 15 }}
-                                onClick={() => { handleToggleTodo(item.id) }}>Toggle</button>
+                                onClick={() => { handleToggleTodo(item.id) }}>
+                                <MdDoneOutline />
+                            </button>
                             <button className="close-btn"
-                                onClick={() => handleOnClickDelete(item.id)}>Delete
+                                onClick={() => handleOnClickDelete(item.id)}>
+                                <RiDeleteBinLine />
                             </button>
                         </div>
                     </div>

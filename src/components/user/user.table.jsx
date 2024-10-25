@@ -1,10 +1,9 @@
-import { Table, notification } from 'antd';
-import { ConsoleSqlOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { Table, notification, Popconfirm } from 'antd';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import UpdateUserModal from './user.update.modal';
 import { useState } from "react";
 import ViewUserDetail from './user.view.detail';
 import { deleteUserAPI } from "../../services/api.services";
-import { Popconfirm } from 'antd';
 
 const UserTable = (props) => {
 

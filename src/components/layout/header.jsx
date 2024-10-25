@@ -44,21 +44,19 @@
 // }
 
 // export default Header;
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Menu, message } from 'antd';
-import { UsergroupAddOutlined, HomeOutlined, AuditOutlined, SettingOutlined } from '@ant-design/icons';
+import { ConsoleSqlOutlined, UsergroupAddOutlined } from '@ant-design/icons';
 import { useContext, useState } from 'react';
-import { MdOutlineManageAccounts } from "react-icons/md";
 import { GiBlackBook } from "react-icons/gi";
 import { AuthContext } from '../context/auth.context';
 import { IoIosLogIn } from "react-icons/io";
 import { MdAppRegistration } from "react-icons/md";
 import { TbHandLoveYou } from "react-icons/tb";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { CiTextAlignRight } from 'react-icons/ci';
 import { logoutAPI } from '../../services/api.services';
 import { useNavigate } from 'react-router-dom';
-
+import { FiUsers } from "react-icons/fi";
 
 
 
@@ -74,9 +72,28 @@ const Header = () => {
         setCurrent(e.key);
     };
 
-    const handleOnLogout = async () => {
+    //****** LOGOUT not API/
+    // const handleOnLogout = () => {
+    //     localStorage.removeItem("access_token");
+    //     setUserLogin({
+    //         email: "",
+    //         phone: "",
+    //         fullName: "",
+    //         role: "",
+    //         avatar: "",
+    //         id: ""
+    //     })
+    //     message.success("Logout successful.");
+    //     navigate("/");
+
+    // }
+
+
+    //LOGOUT API
+    const handleLogout = async () => {
         const res = await logoutAPI();
         if (res.data) {
+            //clear data
             localStorage.removeItem("access_token");
             setUserLogin({
                 email: "",
@@ -86,10 +103,11 @@ const Header = () => {
                 avatar: "",
                 id: ""
             })
-            message.success("logout thành công");
+            message.success("Logout successful.");
             navigate("/");
         }
     }
+
 
     const items = [
 
@@ -102,7 +120,7 @@ const Header = () => {
         {
             label: <Link to={"/users"}>Users</Link>,
             key: 'users',
-            icon: <UsergroupAddOutlined />
+            icon: <FiUsers />
         },
         {
             label: <Link to={"/books"}>Books</Link>,
@@ -116,7 +134,7 @@ const Header = () => {
             icon: <TbHandLoveYou />,
             children: [
                 {
-                    label: <span onClick={() => { handleOnLogout() }}>Log out</span>,
+                    label: <span onClick={() => handleLogout()}>Log out</span>,
                     key: 'logout',
                 },
             ],
@@ -138,7 +156,7 @@ const Header = () => {
     ];
 
     return (
-        <Menu style={{ display: "flex", }}
+        <Menu style={{ display: "flex", fontSize: 16 }}
             onClick={onClick}
             selectedKeys={[current]}
             mode="horizontal"
