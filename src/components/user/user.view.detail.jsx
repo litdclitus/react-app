@@ -60,6 +60,7 @@ const ViewUserDetail = (props) => {
         <>
             <Drawer
                 width={"38vw"}
+                style={{ fontSize: 17 }}
                 title="User information"
                 onClose={() => {
                     setDataDetail(null)
@@ -67,13 +68,13 @@ const ViewUserDetail = (props) => {
                 }}
                 open={dataModalOpen}>
                 {dataDetail ? <>
-                    <p>Id: {dataDetail._id}</p>
+                    <p><b>ID:</b> {dataDetail._id}</p>
                     <br />
-                    <p>Full name: {dataDetail.fullName}</p>
+                    <p><b>Full name:</b> {dataDetail.fullName}</p>
                     <br />
-                    <p>Email: {dataDetail.email}</p>
+                    <p><b>Email:</b> {dataDetail.email}</p>
                     <br />
-                    <p>Phone number: {dataDetail.phone}</p>
+                    <p><b>Phone number: </b>{dataDetail.phone}</p>
                     <br />
                     <div style={{
                         display: "block",
