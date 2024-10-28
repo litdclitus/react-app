@@ -1,17 +1,30 @@
 import { useState } from 'react';
-import { Table, Popconfirm, Drawer } from 'antd';
+import { Table, Popconfirm } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import BookDetail from './book.view.detail';
 import CurrencyFormat from 'react-currency-format';
 
 const BookTable = (props) => {
 
-    const { bookData, setBookData, current, setCurrent,
-        pageSize, setPageSize, total, setTotal } = props;
+    const { bookData, current, setCurrent,
+        pageSize, setPageSize, total, loadBook } = props;
 
     const [dataModalOpen, setDataModalOpen] = useState(false);
 
     const [dataDetail, setDataDetail] = useState(null);
+
+    const handleChangePage = (record) => {
+        if (current && record.current) {
+            if (current !== record.current) {
+                setCurrent(record.current)
+            }
+        }
+        if (pageSize && record.pageSize) {
+            if (pageSize !== record.pageSize) {
+                setPageSize(record.pageSize)
+            }
+        }
+    }
 
     const columns = [
         {
@@ -108,7 +121,7 @@ const BookTable = (props) => {
                             return (<div> {range[0]}-{range[1]} on {total} rows</div>)
                         }
                     }}
-            // onChange={handleChangePage}
+                onChange={handleChangePage}
             />
             <BookDetail
                 dataModalOpen={dataModalOpen}

@@ -1,4 +1,5 @@
 import axios from "./axios.customize";
+import { notification } from "antd";
 
 const createUserAPI = (fullName, email, phone, password) => {
     const URL_BACKEND = "/api/v1/user";
@@ -37,7 +38,15 @@ const handleUploadFile = (file, folder) => {
         headers: {
             "upload-type": folder,
             "Content-Type": "multipart/form-data"
-        }
+        },
+        // onUploadProgress: (progressEvent) => {
+        //     const { loaded, total } = progressEvent;
+        //     const percent = Math.round((loaded * 100) / total);
+        //     notification.info({
+        //         message: `Uploading... ${percent}%`,
+        //         duration: 2,
+        //     });
+        // }
     }
 
     const bodyFormData = new FormData();
@@ -93,8 +102,21 @@ const fetchAllBookAPI = (current, pageSize) => {
     return axios.get(URL_BACKEND);
 }
 
+const createBookAPI = (thumbnail, mainText, author, price, quantity, category) => {
+    const URL_BACKEND = `/api/v1/book`;
+    const data = {
+        thumbnail: thumbnail,
+        mainText: mainText,
+        author: author,
+        price: price,
+        quantity: quantity,
+        category: category
+    }
+    return axios.post(URL_BACKEND, data);
+}
+
 export {
     createUserAPI, updateUserAPI, fetchAllUserAPI, deleteUserAPI,
     handleUploadFile, updateAvatarUserAPI, registerUserAPI, loginAPI,
-    getAccountAPI, logoutAPI, fetchAllBookAPI
+    getAccountAPI, logoutAPI, fetchAllBookAPI, createBookAPI
 }

@@ -7,7 +7,7 @@ const ViewUserDetail = (props) => {
 
     const { dataDetail, setDataDetail, dataModalOpen, setDataModalOpen, loadUser } = props;
 
-    const [selectedFile, setSelectedFile] = useState(null)
+    const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState(null)
 
     const handleOnChangeUpload = (event) => {

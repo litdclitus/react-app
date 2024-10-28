@@ -44,7 +44,10 @@ const UserForm = (props) => {
 
     return (
         <div className='user-form'>
-            <div style={{ display: "flex", justifyContent: "space-between", marginRight: 20, marginLeft: 20, marginTop: 30, marginBottom: 50 }}>
+            <div style={{
+                display: "flex", justifyContent: "space-between",
+                margin: "30px 20px 20px 20px"
+            }}>
                 <h3>Table Users</h3>
                 <Button
                     style={{ margin: 0, padding: 10 }}
