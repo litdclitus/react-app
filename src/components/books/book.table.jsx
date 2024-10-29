@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Table, Popconfirm } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import BookDetail from './book.view.detail';
-import CurrencyFormat from 'react-currency-format';
+import BookUpdate from './book.update.modal';
 
 const BookTable = (props) => {
 
@@ -12,6 +12,9 @@ const BookTable = (props) => {
     const [dataModalOpen, setDataModalOpen] = useState(false);
 
     const [dataDetail, setDataDetail] = useState(null);
+
+    const [dataUpdate, setDataUpdate] = useState(null);
+    const [dataUpdateModal, setDataUpdateModal] = useState(false)
 
     const handleChangePage = (record) => {
         if (current && record.current) {
@@ -85,6 +88,8 @@ const BookTable = (props) => {
                 <div style={{ display: "flex" }}>
                     <EditOutlined style={{ cursor: "pointer", color: "orange", marginRight: 18 }}
                         onClick={() => {
+                            setDataUpdate(record);
+                            setDataUpdateModal(true);
 
                         }}
                     />
@@ -128,6 +133,14 @@ const BookTable = (props) => {
                 setDataModalOpen={setDataModalOpen}
                 dataDetail={dataDetail}
                 setDataDetail={setDataDetail}
+            />
+            <BookUpdate
+                dataDetail={dataDetail}
+                dataUpdate={dataUpdate}
+                setDataUpdate={setDataUpdate}
+                dataUpdateModal={dataUpdateModal}
+                setDataUpdateModal={setDataUpdateModal}
+                loadBook={loadBook}
             />
         </>
 

@@ -9,6 +9,8 @@ const BookForm = ({ loadBook }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const [selectedFile, setSelectedFile] = useState(null);
+    const [fileList, setFileList] = useState([]);
+    const [previewImage, setPreviewImage] = useState('');
 
     const [mainText, setMainText] = useState("");
     const [author, setAuthor] = useState("");
@@ -16,8 +18,7 @@ const BookForm = ({ loadBook }) => {
     const [quantity, setQuantity] = useState("");
     const [category, setCategory] = useState("");
 
-    const [fileList, setFileList] = useState([]);
-    const [previewImage, setPreviewImage] = useState('');
+
 
 
 
