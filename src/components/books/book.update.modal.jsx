@@ -6,19 +6,21 @@ import { updateBookAPI, handleUploadFile } from '../../services/api.services';
 
 const BookUpdate = (props) => {
 
-    const { dataUpdate, setDataUpdate, dataUpdateModal, setDataUpdateModal, dataDetail, loadBook } = props;
+    const { dataUpdate, setDataUpdate,
+        dataUpdateModal, setDataUpdateModal, dataDetail, loadBook } = props;
 
-    const [id, setId] = useState("");
-    const [mainText, setMainText] = useState("");
-    const [author, setAuthor] = useState("");
-    const [price, setPrice] = useState("");
-    const [quantity, setQuantity] = useState("");
-    const [category, setCategory] = useState("");
+    // const [id, setId] = useState("");
+    // const [mainText, setMainText] = useState("");
+    // const [author, setAuthor] = useState("");
+    // const [price, setPrice] = useState("");
+    // const [quantity, setQuantity] = useState("");
+    // const [category, setCategory] = useState("");
 
     const [selectedFile, setSelectedFile] = useState(null);
     const [fileList, setFileList] = useState([]);
     const [previewImage, setPreviewImage] = useState(null);
 
+    const [form] = Form.useForm();
 
     const handleChange = async (info) => {
         const { fileList: newFileList } = info;
@@ -38,20 +40,28 @@ const BookUpdate = (props) => {
     };
 
     useEffect(() => {
-        if (dataUpdate) {
-            setId(dataUpdate._id && dataUpdate._id);
-            setAuthor(dataUpdate.author);
-            setMainText(dataUpdate.mainText);
-            setPrice(dataUpdate.price);
-            setCategory(dataUpdate.category);
-            setQuantity(dataUpdate.quantity);
-            setSelectedFile(dataUpdate.selectedFile);
+        if (dataUpdate && dataUpdate._id) {
+            form.setFieldsValue({
+                id: dataUpdate._id,
+                author: dataUpdate.author,
+                mainText: dataUpdate.mainText,
+                price: dataUpdate.price,
+                category: dataUpdate.category,
+                quantity: dataUpdate.quantity
+
+            })
+            // setId(dataUpdate._id);
+            // setAuthor(dataUpdate.author);
+            // setMainText(dataUpdate.mainText);
+            // setPrice(dataUpdate.price);
+            // setCategory(dataUpdate.category);
+            // setQuantity(dataUpdate.quantity);
+            // setSelectedFile(dataUpdate.selectedFile);
             setPreviewImage(`${import.meta.env.VITE_BACKEND_URL}/images/book/${dataUpdate.thumbnail}`)
         }
     }, [dataUpdate])
 
-
-    const handleSaveUpdate = async () => {
+    const handleSaveUpdate = async (values) => {
         if (!selectedFile) {
             notification.error({
                 message: "Error",
@@ -62,6 +72,7 @@ const BookUpdate = (props) => {
         const resUpload = await handleUploadFile(selectedFile, "book");
         if (resUpload.data) {
             const newThumbnail = resUpload.data.fileUploaded;
+            const { id, mainText, author, price, quantity, category } = values;
             const resUpdateBook = await updateBookAPI(
                 id, newThumbnail, mainText, author, price, quantity, category);
             if (resUpdateBook.data) {
@@ -86,28 +97,35 @@ const BookUpdate = (props) => {
     }
 
     const clearDataCloseModal = () => {
+        // setMainText("");
+        // setAuthor("");
+        // setPrice("");
+        // setCategory("");
+        // setQuantity("");
+        form.resetFields();
         setDataUpdateModal(false);
-        setMainText("");
-        setAuthor("");
-        setPrice("");
-        setCategory("");
-        setQuantity("");
+        setDataUpdate(null);
         setSelectedFile(null);
         setFileList([]);
         setPreviewImage(null);
     }
 
+
     return (
         <Modal title="Edit user"
             open={dataUpdateModal}
-            onOk={() => {
-                handleSaveUpdate();
-            }}
-            onCancel={clearDataCloseModal}
-            okText="Save"
+            footer={null}
+            // onOk={() => {
+            //     handleSaveUpdate();
+            // }}
+            // onCancel={clearDataCloseModal}
+            // okText="Save"
             maskClosable={false}
         >
             <Form
+                form={form}
+                onCancel={clearDataCloseModal}
+                onFinish={handleSaveUpdate}
                 name="wrap"
                 labelCol={{
                     flex: '130px',
@@ -124,52 +142,52 @@ const BookUpdate = (props) => {
                 }}>
                 <Form.Item
                     label="ID"
+                    name="id"
                     rules={[
                         {
                             required: true,
                         },
                     ]}>
                     <Input
-                        value={id}
+                        // value={id}
                         disabled
                     />
                 </Form.Item>
 
                 <Form.Item
                     label="Title"
-                    // name="mainText"
+                    name="mainText"
                     rules={[
                         {
                             required: true,
                         },
                     ]}>
                     <Input
-                        value={mainText}
-                        onChange={(event) => {
-                            setMainText(event.target.value);
-
-                        }}
+                    // value={mainText}
+                    // onChange={(event) => {
+                    //     setMainText(event.target.value);
+                    // }}
                     />
                 </Form.Item>
                 <Form.Item
                     label="Author"
-                    // name="author"
+                    name="author"
                     rules={[
                         {
                             required: true,
                         },
                     ]}>
                     <Input
-                        value={author}
-                        onChange={(event) => {
-                            setAuthor(event.target.value);
-                        }}
+                    // value={author}
+                    // onChange={(event) => {
+                    //     setAuthor(event.target.value);
+                    // }}
                     />
                 </Form.Item>
 
                 <Form.Item
                     label="Price"
-                    // name="price"
+                    name="price"
                     rules={[
                         {
                             required: true,
@@ -178,34 +196,34 @@ const BookUpdate = (props) => {
                     <InputNumber
                         addonAfter={"VND"}
                         style={{ width: "100%" }}
-                        value={price}
-                        onChange={(event) => {
-                            setPrice(event)
-                        }}
+                    // value={price}
+                    // onChange={(event) => {
+                    //     setPrice(event)
+                    // }}
                     />
                 </Form.Item>
                 <Form.Item
-                    label="Quantity">
+                    label="Quantity"
+                    name="quantity"
+                >
                     <InputNumber
                         style={{ width: "100%" }}
-                        value={quantity}
-                        onChange={(event) => { setQuantity(event) }}
+                    // value={quantity}
+                    // onChange={(event) => { setQuantity(event) }}
                     />
-
                 </Form.Item>
 
                 <Form.Item
                     label="Genre"
-                    // name="category"
+                    name="category"
                     rules={[
                         {
                             required: true,
                         },
                     ]}>
-
                     <Select
-                        value={category}
-                        onChange={(value) => { setCategory(value) }}
+                        // value={category}
+                        // onChange={(value) => { setCategory(value) }}
                         rules={[
                             {
                                 required: true,
@@ -240,6 +258,7 @@ const BookUpdate = (props) => {
                                 src={previewImage}
                                 alt="book image" />
                         </div>
+
                         <Upload
                             listType="picture-card"
                             onChange={handleChange}
@@ -249,11 +268,13 @@ const BookUpdate = (props) => {
                             {fileList.length >= 1 ? null : <Button icon={<UploadOutlined />}>Upload</Button>}
                         </Upload>
                     </div>
+                    <div>
+                        <Button onClick={clearDataCloseModal}>Cancel</Button>
+
+                        <Button type="primary" htmlType="submit" onClick={() => { form.submit }} >Save</Button>
+                    </div>
                 </Form.Item>
-
             </Form>
-
-
         </Modal >
     )
 }

@@ -117,8 +117,6 @@ const RegisterPage = () => {
                     </Col>
                     <Divider dashed>Already have an account? <Link to="/login">Log in now</Link></Divider>
                 </Row>
-
-
             </Form>
         </div >
     )
