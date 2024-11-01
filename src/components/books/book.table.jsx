@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { Table, Popconfirm } from 'antd';
+import { Table, Popconfirm, notification, message } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import BookDetail from './book.view.detail';
 import BookUpdate from './book.update.modal';
+import { deleteBookAPI } from '../../services/api.services';
 
 const BookTable = (props) => {
 
     const { bookData, current, setCurrent,
-        pageSize, setPageSize, total, loadBook } = props;
+        pageSize, setPageSize, total, loadBook, loadingTable } = props;
 
     const [dataModalOpen, setDataModalOpen] = useState(false);
 
@@ -26,6 +27,17 @@ const BookTable = (props) => {
             if (pageSize !== record.pageSize) {
                 setPageSize(record.pageSize)
             }
+        }
+    }
+
+    const handleDeleteBook = async (id) => {
+        const res = await deleteBookAPI(id);
+        if (res.data) {
+            message.success('Delete book successfully!');
+            loadBook();
+        }
+        else {
+            message.error(JSON.stringify(res.message))
         }
     }
 
@@ -90,19 +102,19 @@ const BookTable = (props) => {
                         onClick={() => {
                             setDataUpdate(record);
                             setDataUpdateModal(true);
-
                         }}
                     />
                     <Popconfirm
-                        title="Delete user"
-                        description="Are you sure to delete this user?"
+                        title="Delete book"
+                        description="Are you sure to delete this book?"
                         onConfirm={() => {
-
+                            handleDeleteBook(record._id);
                         }}
                         okText="Yes"
                         cancelText="No"
                         placement='bottomLeft'
                     >
+
                         <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
                     </Popconfirm>
                 </div>
@@ -127,6 +139,7 @@ const BookTable = (props) => {
                         }
                     }}
                 onChange={handleChangePage}
+                loading={loadingTable}
             />
             <BookDetail
                 dataModalOpen={dataModalOpen}

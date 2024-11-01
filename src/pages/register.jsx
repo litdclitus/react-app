@@ -4,6 +4,11 @@ import { registerUserAPI } from "../services/api.services";
 import { useNavigate } from "react-router-dom";
 import "./register.css";
 import { ArrowRightOutlined } from '@ant-design/icons';
+import { FaRegUser } from "react-icons/fa";
+import { AiTwotoneMail } from "react-icons/ai";
+import { IoIosPhonePortrait } from "react-icons/io";
+import { PiPasswordDuotone } from "react-icons/pi";
+
 
 
 const RegisterPage = () => {
@@ -45,14 +50,14 @@ const RegisterPage = () => {
                 <Row className="register-row" justify={"center"}>
                     <Col className="register-col" xs={24} md={12}>
                         <Form.Item className="register-item"
-                            label="Full name"
+                            // label="Full name"
                             name="fullName"
                             rules={[
                                 {
                                     required: true,
                                 },
                             ]}>
-                            <Input />
+                            <Input prefix={<i><FaRegUser /></i>} className="input-field" placeholder="Full name" />
                         </Form.Item>
                     </Col>
                 </Row>
@@ -60,7 +65,7 @@ const RegisterPage = () => {
                 <Row className="register-row" justify={"center"}>
                     <Col className="register-col" xs={24} md={12}>
                         <Form.Item
-                            label="Email"
+                            // label="Email"
                             name="email"
                             rules={[
                                 {
@@ -68,7 +73,7 @@ const RegisterPage = () => {
                                     type: "email",
                                 },
                             ]}>
-                            <Input />
+                            <Input prefix={<i><AiTwotoneMail /></i>} className="input-field" placeholder="Email" />
                         </Form.Item>
                     </Col>
                 </Row>
@@ -76,7 +81,7 @@ const RegisterPage = () => {
                 <Row className="register-row" justify={"center"}>
                     <Col className="register-col" xs={24} md={12}>
                         <Form.Item
-                            label="Phone number"
+                            // label="Phone number"
                             name="phone"
                             rules={[
                                 {
@@ -87,7 +92,7 @@ const RegisterPage = () => {
                                     message: "The phone number provided is not valid or contains invalid characters"
                                 }
                             ]}>
-                            <Input />
+                            <Input prefix={<i><IoIosPhonePortrait /></i>} className="input-field" placeholder="Phone number" />
                         </Form.Item>
                     </Col>
                 </Row>
@@ -95,27 +100,27 @@ const RegisterPage = () => {
                 <Row className="register-row" justify={"center"}>
                     <Col className="register-col" xs={24} md={12}>
                         <Form.Item
-                            label="Password"
+                            // label="Password"
                             name="password"
                             rules={[
                                 {
                                     required: true,
                                 },
                             ]}>
-                            <Input.Password />
+                            <Input.Password prefix={<i><PiPasswordDuotone /></i>} className="input-field" placeholder="Password" />
                         </Form.Item>
                     </Col>
                 </Row>
 
                 <Row justify={"center"}>
                     <Col style={{ display: "flex", justifyContent: "space-between" }} xs={24} md={12}>
-                        <Button style={{ marginBottom: 10 }} type="primary" htmlType="submit"
+                        <Button style={{ marginBottom: 10, }} type="primary" htmlType="submit"
                             onClick={() => { form.submit }}>
                             Submit
                         </Button>
                         <Link to="/">Go to Dashboard <ArrowRightOutlined /></Link>
                     </Col>
-                    <Divider dashed>Already have an account? <Link to="/login">Log in now</Link></Divider>
+                    <Divider style={{ color: "white" }} dashed>Already have an account? <Link to="/login">Log in now</Link></Divider>
                 </Row>
             </Form>
         </div >

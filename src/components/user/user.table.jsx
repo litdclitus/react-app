@@ -7,7 +7,7 @@ import { deleteUserAPI } from "../../services/api.services";
 
 const UserTable = (props) => {
 
-    const { dataUser, loadUser, current, pageSize, total, setCurrent, setPageSize } = props;
+    const { dataUser, loadUser, current, pageSize, total, setCurrent, setPageSize, loadingTable } = props;
 
 
     const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
@@ -114,6 +114,7 @@ const UserTable = (props) => {
                 columns={columns}
                 dataSource={dataUser}
                 rowKey={"_id"}
+                loading={loadingTable}
                 pagination={
                     {
                         current: current,

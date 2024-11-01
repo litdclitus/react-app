@@ -1,3 +1,17 @@
+.login-container {
+    position: relative;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    background-image: url("../assets/background-register2.jpg");
+    background-size: cover;
+    min-height: 100vh;
+    background-position: center;
+    overflow: hidden;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
 fieldset {
     border: 1px solid rgb(219, 214, 214);
 }
@@ -6,12 +20,19 @@ fieldset {
     margin: 0 auto;
     max-width: 50%;
     margin-top: 5%;
+    position: relative;
+    border: 2px solid #ffffffff;
+    border-radius: 1rem;
+    background-color: #1a1a1a1a;
+    padding: 1.5rem;
+    backdrop-filter: blur(8px);
+    gap: 2rem;
 }
 
 .login-row {
     width: 50vw;
     padding: 10px;
-
+    color: "white";
 }
 
 .login-col {}

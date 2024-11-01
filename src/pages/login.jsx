@@ -38,78 +38,79 @@ const LoginPage = () => {
     };
 
     return (
-        <fieldset className='login-page'>
-            <legend style={{ marginBottom: 20 }}>Log in</legend>
-            <Form
-                form={form}
-                name="login"
-                initialValues={{
-                    remember: true,
-                }}
-                onFinish={onFinish}
-            >
-                <Row className="login-row" justify={"center"}>
-                    <Col className="login-col" xs={24} md={12}>
-                        <Form.Item
-                            name="email"
-                            rules={[
-                                {
-                                    required: true,
-                                    type: "email",
-                                },
-                            ]}
-                        >
-                            <Input className='login-input' prefix={<MailOutlined />} placeholder="Email" />
-                        </Form.Item>
-                    </Col>
-                </Row>
+        <div className='login-container'>
+            <fieldset className='login-page'>
+                <legend style={{ marginBottom: 15, color: "white", fontWeight: 700, fontSize: 20 }}>Log in</legend>
+                <Form
+                    form={form}
+                    name="login"
+                    initialValues={{
+                        remember: true,
+                    }}
+                    onFinish={onFinish}
+                >
+                    <Row className="login-row" justify={"center"}>
+                        <Col className="login-col" xs={24} md={12}>
+                            <Form.Item
+                                name="email"
+                                rules={[
+                                    {
+                                        required: true,
+                                        type: "email",
+                                    },
+                                ]}
+                            >
+                                <Input className='login-input' prefix={<MailOutlined />} placeholder="Email" />
+                            </Form.Item>
+                        </Col>
+                    </Row>
 
-                <Row className="login-row" justify={"center"}>
-                    <Col className="login-col" xs={24} md={12}>
-                        <Form.Item
-                            name="password"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input your Password!',
-                                },
-                            ]}
-                        >
-                            <Input.Password prefix={<LockOutlined />} type="password" placeholder="Password" />
-                        </Form.Item>
-                    </Col>
-                </Row>
+                    <Row className="login-row" justify={"center"}>
+                        <Col className="login-col" xs={24} md={12}>
+                            <Form.Item
+                                name="password"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input your Password!',
+                                    },
+                                ]}
+                            >
+                                <Input.Password prefix={<LockOutlined />} type="password" placeholder="Password" />
+                            </Form.Item>
+                        </Col>
+                    </Row>
 
-                <Row className="login-row" justify={"center"}>
-                    <Col className="login-col" xs={24} md={12} lg={12}>
-                        <Form.Item>
-                            <Flex justify="space-between" align="center">
-                                <Form.Item name="remember" valuePropName="checked" noStyle>
-                                    <Checkbox>Remember me</Checkbox>
-                                </Form.Item>
+                    <Row className="login-row" justify={"center"}>
+                        <Col className="login-col" xs={24} md={12} lg={12}>
+                            <Form.Item>
+                                <Flex justify="space-between" align="center">
+                                    <Form.Item name="remember" valuePropName="checked" noStyle>
+                                        <Checkbox>Remember me</Checkbox>
+                                    </Form.Item>
 
-                            </Flex>
-                        </Form.Item>
-                    </Col>
-                </Row>
+                                </Flex>
+                            </Form.Item>
+                        </Col>
+                    </Row>
 
-                <Row justify={"center"}>
-                    <Col style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
-                        xs={24} md={14} lg={12}>
-                        <Button
-                            loading={loading}
-                            style={{ marginBottom: 10 }}
-                            type="primary" htmlType="submit"
-                            onClick={() => { form.submit }}>
-                            Sign in
-                        </Button>
-                        <Link to="/">Go to Dashboard <ArrowRightOutlined /></Link>
-                    </Col>
-                    <Divider dashed>Do not have an account? <Link to="/register">Sign up now</Link></Divider>
-                </Row>
-            </Form>
-        </fieldset>
-
+                    <Row justify={"center"}>
+                        <Col style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                            xs={24} md={14} lg={12}>
+                            <Button
+                                loading={loading}
+                                style={{ marginBottom: 10 }}
+                                type="primary" htmlType="submit"
+                                onClick={() => { form.submit }}>
+                                Sign in
+                            </Button>
+                            <Link to="/">Go to Dashboard <ArrowRightOutlined /></Link>
+                        </Col>
+                        <Divider dashed>Do not have an account? <Link to="/register">Sign up now</Link></Divider>
+                    </Row>
+                </Form>
+            </fieldset>
+        </div>
     )
 }
 
